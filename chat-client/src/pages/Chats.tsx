@@ -1,26 +1,40 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
-const Chats = () => {
-  const [chats, setChats] = useState([]);
+const Chats: React.FC = () => {
+  interface apiProps {
+    _id: string;
+    chatName: string;
+  }
+
+  const [chats, setChats] = useState<apiProps[]>([]);
 
   const fetchChats = async () => {
-    await axios
-      .get('http://localhost:3000/api/chats')
-      .then((res) => setChats(res.data));
+    try {
+      const { data, status } = await axios.get(
+        'http://localhost:3000/api/chats'
+      );
+
+      console.log('Response Recieved', status);
+      setChats(data);
+    } catch (err) {
+      console.log('Something went wrong', err);
+    }
   };
 
   useEffect(() => {
     fetchChats();
   }, []);
-  console.log(chats);
 
   return (
-    <div>
-      {/* {chats.map((chat) => {
-        <div>{chat.chatName}</div>;
-      })} */}
-    </div>
+    <>
+      {chats &&
+        chats.map((chat) => (
+          <div key={chat._id}>
+            <h1>{chat.chatName}</h1>
+          </div>
+        ))}
+    </>
   );
 };
 
