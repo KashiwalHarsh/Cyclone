@@ -1,4 +1,13 @@
-import { Container, Box, Text } from '@chakra-ui/react';
+import {
+  Container,
+  Box,
+  Text,
+  Tabs,
+  TabList,
+  Tab,
+  TabPanels,
+  TabPanel,
+} from '@chakra-ui/react';
 
 const Homepage = () => {
   return (
@@ -14,9 +23,37 @@ const Homepage = () => {
           borderRadius="lg"
           borderWidth="1px"
         >
-          <Text> Chat App</Text>
+          <Text fontSize="xl" fontFamily="Work sans" color="black">
+            Chat App
+          </Text>
         </Box>
-        <Box></Box>
+        <Box
+          bg="white"
+          w="100%"
+          p="4"
+          borderRadius="lg"
+          borderWidth="1px"
+          color="black"
+        >
+          <Tabs variant="unstyled" width="100%">
+            <TabList mb="1em">
+              <Tab width="50%" _selected={{ color: 'white', bg: 'blue.500' }}>
+                Login
+              </Tab>
+              <Tab width="50%" _selected={{ color: 'white', bg: 'green.400' }}>
+                Signup
+              </Tab>
+            </TabList>
+            <TabPanels>
+              <TabPanel>
+                <p>Login Fields</p>
+              </TabPanel>
+              <TabPanel>
+                <p>Signup Fields</p>
+              </TabPanel>
+            </TabPanels>
+          </Tabs>
+        </Box>
       </Container>
     </>
   );
