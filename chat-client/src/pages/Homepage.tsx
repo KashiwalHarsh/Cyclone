@@ -8,6 +8,8 @@ import {
   TabPanels,
   TabPanel,
 } from '@chakra-ui/react';
+import Login from '../components/authentication/Login';
+import Signup from '../components/authentication/Signup';
 
 const Homepage = () => {
   return (
@@ -46,10 +48,10 @@ const Homepage = () => {
             </TabList>
             <TabPanels>
               <TabPanel>
-                <p>Login Fields</p>
+                <Login />
               </TabPanel>
               <TabPanel>
-                <p>Signup Fields</p>
+                <Signup />
               </TabPanel>
             </TabPanels>
           </Tabs>
