@@ -18,7 +18,7 @@ const Signup = () => {
   const [pic, setPic] = useState<string>();
 
   const handleClick = () => setShow(!show);
-  const postDetails = () => {};
+  //   const postDetails = () => {};
   const handleSubmit = () => {};
 
   return (
@@ -27,6 +27,7 @@ const Signup = () => {
         <FormControl id="name" isRequired>
           <FormLabel>Name:</FormLabel>
           <Input
+            value={name}
             placeholder="Enter your Name"
             onChange={(e) => setName(e.target.value)}
           />
@@ -34,6 +35,7 @@ const Signup = () => {
         <FormControl id="email" isRequired>
           <FormLabel>Email:</FormLabel>
           <Input
+            value={email}
             placeholder="Enter your Email"
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -43,6 +45,7 @@ const Signup = () => {
           <FormLabel>Password:</FormLabel>
           <InputGroup>
             <Input
+              value={password}
               type={show ? 'text' : 'password'}
               placeholder="Enter your Password"
               onChange={(e) => setPassword(e.target.value)}
@@ -59,6 +62,7 @@ const Signup = () => {
           <FormLabel>Confirm Password:</FormLabel>
           <InputGroup>
             <Input
+              value={confirmPassword}
               type={show ? 'text' : 'password'}
               placeholder="Confirm your Password"
               onChange={(e) => setConfirmPassword(e.target.value)}
@@ -74,10 +78,11 @@ const Signup = () => {
         <FormControl id="pic">
           <FormLabel>Profile Pic:</FormLabel>
           <Input
+            value={pic}
             type="file"
             p="1.5"
             accept="image/*"
-            onChange={(e) => postDetails(e.target.files[0])}
+            // onChange={(e) => postDetails(e.target.files[0])}
           />
         </FormControl>
 
