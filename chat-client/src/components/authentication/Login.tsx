@@ -23,6 +23,7 @@ const Login = () => {
         <FormControl id="email" isRequired>
           <FormLabel>Email:</FormLabel>
           <Input
+            value={email}
             placeholder="Enter your Email"
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -32,6 +33,7 @@ const Login = () => {
           <FormLabel>Password:</FormLabel>
           <InputGroup>
             <Input
+              value={password}
               type={show ? 'text' : 'password'}
               placeholder="Enter your Password"
               onChange={(e) => setPassword(e.target.value)}
@@ -51,6 +53,18 @@ const Login = () => {
           onClick={handleSubmit}
         >
           Login
+        </Button>
+
+        <Button
+          colorScheme="orange"
+          width="100%"
+          style={{ marginTop: 15 }}
+          onClick={() => {
+            setEmail('guest001@gmail.com');
+            setPassword('guest001');
+          }}
+        >
+          Continue with Guest User Credentials
         </Button>
       </VStack>
     </>
