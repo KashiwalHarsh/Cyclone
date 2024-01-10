@@ -1,12 +1,15 @@
 const express = require('express')
-const cors = require("cors")
 const dotenv = require('dotenv')
-const { chats } = require('./dummy-data/data')
 dotenv.config();
+const cors = require("cors")
+const { chats } = require('./dummy-data/data')
+const connectDB = require('./config/db')
 
 
 const app = express()
 app.use(cors())
+
+connectDB()
 
 app.get("/", (req, res) => {
     res.send("Default route ")
