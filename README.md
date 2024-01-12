@@ -1,3 +1,3 @@
 Slack Clone
 
-A Realtime Chat application, build using Socket.io and Mongodb with React Frontend
+A Realtime Chat application, built using Socket.io and Mongodb with React Frontend
