@@ -56,7 +56,7 @@ const Login = () => {
         </Button>
 
         <Button
-          colorScheme="orange"
+          colorScheme="blackAlpha"
           width="100%"
           style={{ marginTop: 15 }}
           onClick={() => {
