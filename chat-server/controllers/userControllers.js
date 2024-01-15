@@ -27,7 +27,9 @@ const registerUser = asyncHandler(async (req, res) => {
             pic: user.pic
         });
     } else {
-
+        res.status(400);
+        throw new Error("Failed to Create the user")
     }
-
 })
+
+module.exports = { registerUser }
