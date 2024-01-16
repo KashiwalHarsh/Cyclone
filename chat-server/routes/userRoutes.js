@@ -1,5 +1,5 @@
 const express = require('express')
-const { registerUser } = require("../controllers/userControllers")
+const { registerUser, authUser } = require("../controllers/userControllers")
 
 const router = express.Router()
 
@@ -7,6 +7,6 @@ const router = express.Router()
 router.route("/").post(registerUser)
 
 //login user, Without Chaining
-// router.get("/login", authUser)
+router.get("/login", authUser)
 
 module.exports = router
