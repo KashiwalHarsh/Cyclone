@@ -6,9 +6,9 @@ const { chats } = require('./dummy-data/data')
 const connectDB = require('./config/db')
 const userRoutes = require('./routes/userRoutes')
 
-
 const app = express()
 app.use(cors())
+app.use(express.json()) //to accept json data
 
 //Db connection - config
 connectDB()

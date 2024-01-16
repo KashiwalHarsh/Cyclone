@@ -1,6 +1,7 @@
 //express-async-handler for handling errors automitically
 const asyncHandler = require("express-async-handler")
 const User = require("../models/userModel")
+const generateToken = require("../config/generateToken")
 
 const registerUser = asyncHandler(async (req, res) => {
     const { name, email, password, pic } = req.body
@@ -13,7 +14,7 @@ const registerUser = asyncHandler(async (req, res) => {
     const userExists = await User.findOne({ email })
 
     if (userExists) {
-        res.status(400);
+        res.status(400).json("User Already Exists");
         throw new Error("User Already Exists")
     }
 
@@ -24,7 +25,8 @@ const registerUser = asyncHandler(async (req, res) => {
             _id: user._id,
             name: user.name,
             email: user.email,
-            pic: user.pic
+            pic: user.pic,
+            token: generateToken(user._id)
         });
     } else {
         res.status(400);
