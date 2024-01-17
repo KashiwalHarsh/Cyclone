@@ -5,6 +5,7 @@ const cors = require("cors")
 const { chats } = require('./dummy-data/data')
 const connectDB = require('./config/db')
 const userRoutes = require('./routes/userRoutes')
+const { notFound, errorHandler } = require('./middlewares/errorMiddleware')
 
 const app = express()
 app.use(cors())
@@ -19,6 +20,8 @@ app.get("/", (req, res) => {
 })
 
 app.use("/api/user", userRoutes)
+app.use(notFound)
+app.use(errorHandler)
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
