@@ -7,6 +7,6 @@ const router = express.Router()
 router.route("/").post(registerUser)
 
 //login user, Without Chaining
-router.get("/login", authUser)
+router.post("/login", authUser)
 
 module.exports = router
