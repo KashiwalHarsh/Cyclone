@@ -29,7 +29,7 @@ const registerUser = asyncHandler(async (req, res) => {
             token: generateToken(user._id)
         });
     } else {
-        res.status(400);
+        res.status(400).json("Failed to Create the user");
         throw new Error("Failed to Create the user")
     }
 })
@@ -48,7 +48,7 @@ const authUser = asyncHandler(async (req, res) => {
             token: generateToken(user._id)
         })
     } else {
-        res.status(401);
+        res.status(401).json("Invalid Email or Password");
         throw new Error("Invalid Email or Password")
     }
 })
