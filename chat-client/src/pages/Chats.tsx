@@ -1,5 +1,5 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+// import axios from 'axios';
+// import { useEffect, useState } from 'react';
 
 const Chats: React.FC = () => {
   // interface apiProps {
@@ -9,22 +9,22 @@ const Chats: React.FC = () => {
 
   // const [chats, setChats] = useState<apiProps[]>([]);
 
-  const fetchChats = async () => {
-    try {
-      const { data, status } = await axios.get(
-        'http://localhost:3000/api/chats'
-      );
+  // const fetchChats = async () => {
+  //   try {
+  //     const { data, status } = await axios.get(
+  //       'http://localhost:3000/api/chats'
+  //     );
 
-      console.log('Response Recieved', status);
-      // setChats(data);
-    } catch (err) {
-      console.log('Something went wrong', err);
-    }
-  };
+  //     console.log('Response Recieved', status);
+  //     setChats(data);
+  //   } catch (err) {
+  //     console.log('Something went wrong', err);
+  //   }
+  // };
 
-  useEffect(() => {
-    fetchChats();
-  }, []);
+  // useEffect(() => {
+  //   fetchChats();
+  // }, []);
 
   return (
     <>
