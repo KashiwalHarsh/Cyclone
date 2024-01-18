@@ -9,6 +9,8 @@ import {
 } from '@chakra-ui/react';
 import { useToast } from '@chakra-ui/react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Signup = () => {
   const [show, setShow] = useState<boolean>(false);
@@ -20,10 +22,11 @@ const Signup = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const toast = useToast();
+  const navigate = useNavigate();
 
   const handleClick = () => setShow(!show);
 
-  const postDetails = (pics: File) => {
+  const postDetails = async (pics: File) => {
     setLoading(true);
     if (pics === undefined) {
       toast({
@@ -43,26 +46,22 @@ const Signup = () => {
       data.append('upload_preset', 'Chat-app');
       data.append('cloud_name', 'harshonline');
 
-      fetch('https://api.cloudinary.com/v1_1/harshonline/image/upload', {
-        method: 'post',
-        mode: 'cors',
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-        },
-        body: data,
-      })
-        .then((res) => {
-          console.log(res);
-          res.json();
-        })
-        .then((data) => {
-          setPic(data.url.toString());
-          setLoading(false);
-        })
-        .catch((err) => {
-          console.log(err);
-          setLoading(false);
-        });
+      try {
+        const cloudinaryResponse = await fetch(
+          'https://api.cloudinary.com/v1_1/harshonline/image/upload',
+          {
+            method: 'post',
+            body: data,
+          }
+        );
+        const cloudinaryData = await cloudinaryResponse.json();
+        setPic(cloudinaryData.url.toString());
+        // console.log(cloudinaryData.url.toString());
+        setLoading(false);
+      } catch (err) {
+        console.log(err);
+        setLoading(false);
+      }
     } else {
       toast({
         title: 'Please Select an Image!',
@@ -76,7 +75,70 @@ const Signup = () => {
     }
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = async () => {
+    setLoading(true);
+
+    if (!name || !email || !password || !confirmPassword) {
+      toast({
+        title: 'Please Fill all the fields!',
+        status: 'warning',
+        duration: 5000,
+        isClosable: true,
+        position: 'bottom',
+      });
+      setLoading(false);
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      toast({
+        title: 'Passwords Do not Match!',
+        status: 'warning',
+        duration: 5000,
+        isClosable: true,
+        position: 'bottom',
+      });
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const config = { headers: { 'Content-type': 'application/json' } };
+      const { data } = await axios.post(
+        'http://localhost:3000/api/user',
+        {
+          name,
+          email,
+          password,
+          confirmPassword,
+          pic,
+        },
+        config
+      );
+
+      toast({
+        title: 'Registration is Successfull!',
+        status: 'success',
+        duration: 5000,
+        isClosable: true,
+        position: 'bottom',
+      });
+
+      localStorage.setItem('userInfo', JSON.stringify(data));
+      setLoading(false);
+      navigate('/chats');
+    } catch (err) {
+      toast({
+        title: 'Error Occured!',
+        description: err.response.data.message,
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+        position: 'bottom',
+      });
+      setLoading(false);
+    }
+  };
 
   return (
     <>
@@ -135,7 +197,7 @@ const Signup = () => {
         <FormControl id="pic">
           <FormLabel>Profile Pic:</FormLabel>
           <Input
-            value={pic}
+            // value={pic}
             type="file"
             p="1.5"
             accept="image/*"

@@ -18,6 +18,9 @@ connectDB()
 app.get("/", (req, res) => {
     res.send("Default route ")
 })
+app.get("/api/chats", (req, res) => {
+    res.send("Status Ok")
+})
 
 app.use("/api/user", userRoutes)
 app.use(notFound)
