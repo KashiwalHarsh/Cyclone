@@ -23,9 +23,9 @@ const Signup = () => {
 
   const handleClick = () => setShow(!show);
 
-  const postDetails = (pic: File) => {
+  const postDetails = (pics: File) => {
     setLoading(true);
-    if (pic === undefined) {
+    if (pics === undefined) {
       toast({
         title: 'Please Select an Image!',
         status: 'warning',
@@ -33,6 +33,46 @@ const Signup = () => {
         isClosable: true,
         position: 'bottom',
       });
+      setLoading(false);
+      return;
+    }
+
+    if (pics.type === 'image/jpeg' || pics.type === 'image/png') {
+      const data = new FormData();
+      data.append('file', pics);
+      data.append('upload_preset', 'Chat-app');
+      data.append('cloud_name', 'harshonline');
+
+      fetch('https://api.cloudinary.com/v1_1/harshonline/image/upload', {
+        method: 'post',
+        mode: 'cors',
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
+        body: data,
+      })
+        .then((res) => {
+          console.log(res);
+          res.json();
+        })
+        .then((data) => {
+          setPic(data.url.toString());
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.log(err);
+          setLoading(false);
+        });
+    } else {
+      toast({
+        title: 'Please Select an Image!',
+        status: 'warning',
+        duration: 5000,
+        isClosable: true,
+        position: 'bottom',
+      });
+      setLoading(false);
+      return;
     }
   };
 
@@ -95,10 +135,14 @@ const Signup = () => {
         <FormControl id="pic">
           <FormLabel>Profile Pic:</FormLabel>
           <Input
+            value={pic}
             type="file"
             p="1.5"
             accept="image/*"
-            onChange={(e) => postDetails(e.target.files[0])}
+            onChange={(e) => {
+              if (!e.target.files) return;
+              postDetails(e.target.files[0]);
+            }}
           />
         </FormControl>
 
@@ -107,6 +151,7 @@ const Signup = () => {
           width="100%"
           style={{ marginTop: 15 }}
           onClick={handleSubmit}
+          isLoading={loading}
         >
           Signup
         </Button>
