@@ -2,12 +2,12 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 const Chats: React.FC = () => {
-  interface apiProps {
-    _id: string;
-    chatName: string;
-  }
+  // interface apiProps {
+  //   _id: string;
+  //   chatName: string;
+  // }
 
-  const [chats, setChats] = useState<apiProps[]>([]);
+  // const [chats, setChats] = useState<apiProps[]>([]);
 
   const fetchChats = async () => {
     try {
@@ -16,7 +16,7 @@ const Chats: React.FC = () => {
       );
 
       console.log('Response Recieved', status);
-      setChats(data);
+      // setChats(data);
     } catch (err) {
       console.log('Something went wrong', err);
     }
@@ -28,12 +28,13 @@ const Chats: React.FC = () => {
 
   return (
     <>
-      {chats &&
+      {/* {chats &&
         chats.map((chat) => (
           <div key={chat._id}>
             <h1>{chat.chatName}</h1>
           </div>
-        ))}
+        ))} */}
+      <h1>Access to the website</h1>
     </>
   );
 };

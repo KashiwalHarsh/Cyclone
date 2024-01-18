@@ -128,9 +128,9 @@ const Signup = () => {
       setLoading(false);
       navigate('/chats');
     } catch (err) {
+      console.log(err);
       toast({
         title: 'Error Occured!',
-        description: err.response.data.message,
         status: 'error',
         duration: 5000,
         isClosable: true,
