@@ -53,4 +53,11 @@ const authUser = asyncHandler(async (req, res) => {
     }
 })
 
-module.exports = { registerUser, authUser }
+// /api/user?search=harsh
+const allUser = asyncHandler(async (req, res) => {
+    const found = req.query.search
+
+    console.log(found)
+})
+
+module.exports = { registerUser, authUser, allUser }
