@@ -64,6 +64,15 @@ const allUser = asyncHandler(async (req, res) => {
         }
         : {}
 
+    // using ternary operator if keyword is not empty the $or:[] is put inside User.find(), else {} is put in User.find()
+    // code after ↓ ternary exp.
+    // User.find({
+    //     $or: [
+    //         { name: { $regex: req.query.search, $options: 'i' } },
+    //         { email: { $regex: req.query.search, $options: 'i' } }
+    //     ]
+    // })
+
     const users = await User.find(keyword)
     res.send(users)
 })
