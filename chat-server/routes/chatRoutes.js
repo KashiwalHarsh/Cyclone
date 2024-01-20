@@ -6,5 +6,10 @@ const router = express.Router()
 //protect so that only logged in user can acces chat api's
 router.route("/").post(protect, accessChat)
 router.route("/").get(protect, fetchChat)
+router.route("/group").post(protect, createGroupChat)
+router.route("/rename").put(protect, renameGroup)
+router.route("/groupremove").put(protect, removeFromChat)
+router.route("/groupadd").put(protect, addToChat)
+
 
 module.exports = router
