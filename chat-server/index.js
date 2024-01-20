@@ -5,6 +5,7 @@ const cors = require("cors")
 const { chats } = require('./dummy-data/data')
 const connectDB = require('./config/db')
 const userRoutes = require('./routes/userRoutes')
+const chatRoutes = require('./routes/chatRoutes')
 const { notFound, errorHandler } = require('./middlewares/errorMiddleware')
 
 const app = express()
@@ -18,11 +19,9 @@ connectDB()
 app.get("/", (req, res) => {
     res.send("Default route ")
 })
-app.get("/api/chats", (req, res) => {
-    res.send("Status Ok")
-})
 
 app.use("/api/user", userRoutes)
+app.use("/api/chats", chatRoutes)
 app.use(notFound)
 app.use(errorHandler)
 
