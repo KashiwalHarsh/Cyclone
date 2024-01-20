@@ -4,6 +4,8 @@ const { protect } = require("../middlewares/authMiddleware")
 const router = express.Router()
 
 //protect so that only logged in user can acces chat api's
+
+//accessChat is route for chat creation
 router.route("/").post(protect, accessChat)
 router.route("/").get(protect, fetchChat)
 router.route("/group").post(protect, createGroupChat)
