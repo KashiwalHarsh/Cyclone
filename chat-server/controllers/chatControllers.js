@@ -3,7 +3,7 @@ const Chat = require("../models/chatModel");
 const User = require("../models/userModel");
 
 //creation of a new chat
-//understand by repeating it again
+//understand by repeating it again, very imp api for the app
 const accessChat = asyncHandler(async (req, res) => {
     const { userId } = req.body;
 
