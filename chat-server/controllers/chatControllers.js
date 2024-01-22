@@ -50,7 +50,11 @@ const accessChat = asyncHandler(async (req, res) => {
 
 //fetch all the chats 
 const fetchChat = asyncHandler(async (req, res) => {
-    const { userId } = req.body;
+    try {
+        Chat.find({ users: { $elemMatch: { $eq: req.user._id } } }).then(result => res.send(result))
+    } catch (err) {
+
+    }
 })
 
 module.exports = { accessChat, fetchChat }
