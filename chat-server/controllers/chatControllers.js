@@ -56,14 +56,13 @@ const fetchChat = asyncHandler(async (req, res) => {
             .populate("groupAdmin", "-password")
             .populate("latestMessage")
             .sort({ updatedAt: -1 })
-            .then(async (result) => {
+            .then(async (results) => {
                 results = await User.populate(results, {
                     path: "latestMessage.sender",
                     select: "name pic email"
                 })
+                res.status(200).send(results)
             })
-
-        res.status(200).send(result)
     } catch (err) {
         res.status(400)
         throw new Error(err.message)
