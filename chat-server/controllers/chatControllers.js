@@ -49,6 +49,8 @@ const accessChat = asyncHandler(async (req, res) => {
 })
 
 //fetch all the chats 
+const fetchChat = asyncHandler(async (req, res) => {
+    const { userId } = req.body;
+})
 
-
-module.exports = { accessChat }
+module.exports = { accessChat, fetchChat }
