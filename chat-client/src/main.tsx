@@ -2,9 +2,12 @@ import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
 import { ChakraProvider } from '@chakra-ui/react';
+import ChatProvider from './context/ChatProvider.ts';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <ChakraProvider>
-    <App />
-  </ChakraProvider>
+  <ChatProvider>
+    <ChakraProvider>
+      <App />
+    </ChakraProvider>
+  </ChatProvider>
 );
