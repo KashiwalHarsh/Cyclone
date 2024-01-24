@@ -16,10 +16,20 @@ import { useEffect } from 'react';
 const Homepage = () => {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('userInfo'));
+  interface userInfoI {
+    _id: string;
+    name: string;
+    email: string;
+    pic: string;
+    token: string;
+  }
 
-    if (user) {
+  useEffect(() => {
+    const userString = localStorage.getItem('userInfo');
+
+    if (userString != null) {
+      const user = JSON.parse(userString) as userInfoI;
+      console.log(user);
       navigate('/chats');
     }
   }, [navigate]);
