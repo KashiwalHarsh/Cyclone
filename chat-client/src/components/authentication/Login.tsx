@@ -62,7 +62,7 @@ const Login = () => {
     } catch (err) {
       console.log(err);
       toast({
-        title: 'Error Occured!',
+        title: 'Invalid Email or Password!',
         status: 'error',
         duration: 5000,
         isClosable: true,
