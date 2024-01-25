@@ -1,20 +1,42 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const ChatContext = createContext();
+type ChatContextType = {
+  user: userI | undefined;
+  setUser: React.Dispatch<React.SetStateAction<userI | undefined>>;
+};
 
-const ChatProvider = ({ children }) => {
-  const [user, setUser] = useState();
+const ChatContext = createContext<ChatContextType | null>(null);
+
+interface userI {
+  _id: string;
+  name: string;
+  email: string;
+  pic: string;
+  token: string;
+}
+interface ChatProviderProps {
+  children: ReactNode;
+}
+
+const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
+  const [user, setUser] = useState<userI | undefined>();
   const navigate = useNavigate();
 
   useEffect(() => {
-    const userInfo = JSON.parse(localStorage.getItem("userInfo"))
-    setUser(userInfo)
-
-    if (!userInfo) {
-      navigate('/')
+    const userString = localStorage.getItem('userInfo');
+    if (userString != null) {
+      const userInfo = JSON.parse(userString) as userI;
+      setUser(userInfo);
+      navigate('/');
     }
-  }, [navigate])
+  }, [navigate]);
 
   return (
     <ChatContext.Provider value={{ user, setUser }}>
@@ -24,7 +46,12 @@ const ChatProvider = ({ children }) => {
 };
 
 export const ChatState = () => {
-  return useContext(ChatContext);
+  const context = useContext(ChatContext);
+
+  if (!context) {
+    throw new Error('useChatState must be used within a ChatProvider');
+  }
+  return context;
 };
 
 export default ChatProvider;
