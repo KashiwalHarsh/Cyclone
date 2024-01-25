@@ -31,10 +31,12 @@ const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
 
   useEffect(() => {
     const userString = localStorage.getItem('userInfo');
-    if (userString != null) {
-      const userInfo = JSON.parse(userString) as userI;
-      setUser(userInfo);
-      navigate('/chats');
+    //@ts-expect-error JSON.parse only accpets string but here it gets null
+    const userInfo = JSON.parse(userString) as userI;
+    setUser(userInfo);
+
+    if (userString == null) {
+      navigate('/');
     }
   }, [navigate]);
 
