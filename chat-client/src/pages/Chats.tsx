@@ -8,7 +8,6 @@ const Chats: React.FC = () => {
   const { user } = ChatState();
   return (
     <div style={{ width: '100%' }}>
-      <h1>Access to the website</h1>
       {user && <SideDrawer />}
       <Box>
         {user && <MyChats />}
