@@ -1,41 +1,20 @@
-// import axios from 'axios';
-// import { useEffect, useState } from 'react';
+import { Box } from '@chakra-ui/react';
+import { ChatState } from '../context/ChatProvider';
+import SideDrawer from '../components/chats/SideDrawer';
+import MyChats from '../components/chats/MyChats';
+import ChatBox from '../components/chats/ChatBox';
 
 const Chats: React.FC = () => {
-  // interface apiProps {
-  //   _id: string;
-  //   chatName: string;
-  // }
-
-  // const [chats, setChats] = useState<apiProps[]>([]);
-
-  // const fetchChats = async () => {
-  //   try {
-  //     const { data, status } = await axios.get(
-  //       'http://localhost:3000/api/chats'
-  //     );
-
-  //     console.log('Response Recieved', status);
-  //     setChats(data);
-  //   } catch (err) {
-  //     console.log('Something went wrong', err);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchChats();
-  // }, []);
-
+  const { user } = ChatState();
   return (
-    <>
-      {/* {chats &&
-        chats.map((chat) => (
-          <div key={chat._id}>
-            <h1>{chat.chatName}</h1>
-          </div>
-        ))} */}
+    <div style={{ width: '100%' }}>
       <h1>Access to the website</h1>
-    </>
+      {user && <SideDrawer />}
+      <Box>
+        {user && <MyChats />}
+        {user && <ChatBox />}
+      </Box>
+    </div>
   );
 };
 
