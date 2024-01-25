@@ -34,7 +34,7 @@ const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
     if (userString != null) {
       const userInfo = JSON.parse(userString) as userI;
       setUser(userInfo);
-      navigate('/');
+      navigate('/chats');
     }
   }, [navigate]);
 
