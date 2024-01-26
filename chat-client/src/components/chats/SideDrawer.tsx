@@ -57,8 +57,8 @@ const SideDrawer = () => {
               <Avatar
                 size="sm"
                 cursor="pointer"
-                src={user.pic}
                 name={user.name}
+                src={user.pic}
               />
             </MenuButton>
             <MenuList>
