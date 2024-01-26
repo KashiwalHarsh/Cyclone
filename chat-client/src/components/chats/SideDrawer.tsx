@@ -1,6 +1,16 @@
-import { Box, Button, Text, Tooltip } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Text,
+  Tooltip,
+} from '@chakra-ui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { ChevronDownIcon } from '@chakra-ui/icons';
 
 const SideDrawer = () => {
   return (
@@ -21,9 +31,28 @@ const SideDrawer = () => {
         >
           <Button variant="ghost">
             <FontAwesomeIcon icon={faMagnifyingGlass} />
-            <Text px="4">Search User</Text>
+            <Text display={{ base: 'none', md: 'flex' }} px="4">
+              Search User
+            </Text>
           </Button>
         </Tooltip>
+
+        <Text fontSize="2xl"> Flash Chat</Text>
+
+        <div>
+          <Menu>
+            <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+              Actions
+            </MenuButton>
+            <MenuList>
+              <MenuItem>Download</MenuItem>
+              <MenuItem>Create a Copy</MenuItem>
+              <MenuItem>Mark as Draft</MenuItem>
+              <MenuItem>Delete</MenuItem>
+              <MenuItem>Attend a Workshop</MenuItem>
+            </MenuList>
+          </Menu>
+        </div>
       </Box>
     </>
   );
