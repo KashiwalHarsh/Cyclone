@@ -1,4 +1,6 @@
 import { Box, Button, Text, Tooltip } from '@chakra-ui/react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 const SideDrawer = () => {
   return (
@@ -13,13 +15,13 @@ const SideDrawer = () => {
         borderWidth="5px"
       >
         <Tooltip
-          label="Search user for Chat"
+          label="   Search user for Chat"
           hasArrow
           placeContent="bottom-end"
         >
           <Button variant="ghost">
-            <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
-            <Text>Search User</Text>
+            <FontAwesomeIcon icon={faMagnifyingGlass} />
+            <Text px="4">Search User</Text>
           </Button>
         </Tooltip>
       </Box>
