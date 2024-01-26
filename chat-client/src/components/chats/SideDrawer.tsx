@@ -10,7 +10,7 @@ import {
 } from '@chakra-ui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { ChevronDownIcon } from '@chakra-ui/icons';
+import { BellIcon } from '@chakra-ui/icons';
 
 const SideDrawer = () => {
   return (
@@ -41,14 +41,10 @@ const SideDrawer = () => {
 
         <div>
           <Menu>
-            <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-              Actions
+            <MenuButton p={1}>
+              <BellIcon fontSize="2xl" margin={1} />
             </MenuButton>
             <MenuList>
-              <MenuItem>Download</MenuItem>
-              <MenuItem>Create a Copy</MenuItem>
-              <MenuItem>Mark as Draft</MenuItem>
-              <MenuItem>Delete</MenuItem>
               <MenuItem>Attend a Workshop</MenuItem>
             </MenuList>
           </Menu>
