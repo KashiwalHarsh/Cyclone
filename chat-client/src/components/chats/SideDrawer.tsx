@@ -1,4 +1,5 @@
 import {
+  Avatar,
   Box,
   Button,
   Menu,
@@ -10,9 +11,12 @@ import {
 } from '@chakra-ui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { BellIcon } from '@chakra-ui/icons';
+import { BellIcon, ChevronDownIcon } from '@chakra-ui/icons';
+import { ChatState } from '../../context/ChatProvider';
 
 const SideDrawer = () => {
+  const { user } = ChatState();
+
   return (
     <>
       <Box
@@ -43,6 +47,19 @@ const SideDrawer = () => {
           <Menu>
             <MenuButton p={1}>
               <BellIcon fontSize="2xl" margin={1} />
+            </MenuButton>
+            <MenuList>
+              <MenuItem>Attend a Workshop</MenuItem>
+            </MenuList>
+          </Menu>
+          <Menu>
+            <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+              <Avatar
+                size="sm"
+                cursor="pointer"
+                src={user.pic}
+                name={user.name}
+              />
             </MenuButton>
             <MenuList>
               <MenuItem>Attend a Workshop</MenuItem>
