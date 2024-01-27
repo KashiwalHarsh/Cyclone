@@ -3,10 +3,8 @@ import {
   Modal,
   ModalOverlay,
   ModalContent,
-  ModalHeader,
   ModalFooter,
   ModalBody,
-  ModalCloseButton,
   Button,
   useDisclosure,
   IconButton,
@@ -44,23 +42,24 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ user, children }) => {
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader fontSize="25px" display="flex" justifyContent="center">
-            {user.name}
-          </ModalHeader>
-          <ModalCloseButton />
           <ModalBody
+            marginTop="20px"
             color="gray"
-            fontSize="15px"
             display="flex"
+            flexDir="column"
+            alignItems="center"
             justifyContent="center"
           >
             <Image
               borderRadius="full"
-              boxSize="150px"
+              boxSize="100px"
               src={user.pic}
               alt={user.name}
             />
-            <Text />
+            <Text fontSize="30px" display="flex" justifyContent="center">
+              {user.name}
+            </Text>
+            <Text fontSize="20px">Email : {user.email}</Text>
           </ModalBody>
 
           <ModalFooter>
