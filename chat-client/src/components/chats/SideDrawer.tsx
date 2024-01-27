@@ -1,4 +1,3 @@
-import ProfileModal from '../miscellaneous/ProfileModal';
 import {
   Avatar,
   Box,
@@ -15,6 +14,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { BellIcon, ChevronDownIcon } from '@chakra-ui/icons';
 import { ChatState } from '../../context/ChatProvider';
+import ProfileModal from '../miscellaneous/ProfileModal';
 
 const SideDrawer = () => {
   const { user } = ChatState();
