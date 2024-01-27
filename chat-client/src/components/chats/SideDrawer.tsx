@@ -15,12 +15,18 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { BellIcon, ChevronDownIcon } from '@chakra-ui/icons';
 import { ChatState } from '../../context/ChatProvider';
 import ProfileModal from '../miscellaneous/ProfileModal';
+import { useNavigate } from 'react-router-dom';
 
 const SideDrawer = () => {
   const { user } = ChatState();
-
+  const navigate = useNavigate();
   //can cause problem
   if (!user) return;
+
+  const logoutHandler = () => {
+    localStorage.removeItem('userInfo');
+    navigate('/');
+  };
 
   return (
     <>
@@ -71,7 +77,7 @@ const SideDrawer = () => {
                 <MenuItem>My Profile</MenuItem>
               </ProfileModal>
               <MenuDivider />
-              <MenuItem>Logout</MenuItem>
+              <MenuItem onClick={logoutHandler}>Logout</MenuItem>
             </MenuList>
           </Menu>
         </div>
