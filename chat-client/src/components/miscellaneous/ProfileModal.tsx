@@ -10,6 +10,8 @@ import {
   Button,
   useDisclosure,
   IconButton,
+  Image,
+  Text,
 } from '@chakra-ui/react';
 import { ReactNode } from 'react';
 
@@ -52,7 +54,13 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ user, children }) => {
             display="flex"
             justifyContent="center"
           >
-            {user.email}
+            <Image
+              borderRadius="full"
+              boxSize="150px"
+              src={user.pic}
+              alt={user.name}
+            />
+            <Text />
           </ModalBody>
 
           <ModalFooter>
