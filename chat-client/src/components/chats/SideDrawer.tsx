@@ -1,9 +1,11 @@
+import ProfileModal from '../miscellaneous/ProfileModal';
 import {
   Avatar,
   Box,
   Button,
   Menu,
   MenuButton,
+  MenuDivider,
   MenuItem,
   MenuList,
   Text,
@@ -62,7 +64,11 @@ const SideDrawer = () => {
               />
             </MenuButton>
             <MenuList>
-              <MenuItem>Attend a Workshop</MenuItem>
+              <ProfileModal>
+                {/* <MenuItem>My Profile</MenuItem> */}
+              </ProfileModal>
+              <MenuDivider />
+              <MenuItem>Logout</MenuItem>
             </MenuList>
           </Menu>
         </div>
