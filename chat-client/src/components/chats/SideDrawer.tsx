@@ -19,6 +19,9 @@ import ProfileModal from '../miscellaneous/ProfileModal';
 const SideDrawer = () => {
   const { user } = ChatState();
 
+  //can cause problem
+  if (!user) return;
+
   return (
     <>
       <Box
@@ -64,8 +67,8 @@ const SideDrawer = () => {
               />
             </MenuButton>
             <MenuList>
-              <ProfileModal>
-                {/* <MenuItem>My Profile</MenuItem> */}
+              <ProfileModal user={user}>
+                <MenuItem>My Profile</MenuItem>
               </ProfileModal>
               <MenuDivider />
               <MenuItem>Logout</MenuItem>

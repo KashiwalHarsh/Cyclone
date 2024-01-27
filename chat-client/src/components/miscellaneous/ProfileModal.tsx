@@ -1,5 +1,69 @@
-const ProfileModal = () => {
-  return <div>ProfileModal</div>;
+import { ViewIcon } from '@chakra-ui/icons';
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  Button,
+  useDisclosure,
+  IconButton,
+} from '@chakra-ui/react';
+import { ReactNode } from 'react';
+
+interface userI {
+  _id: string;
+  name: string;
+  email: string;
+  pic: string;
+  token: string;
+}
+interface ProfileModalProps {
+  user: userI;
+  children: ReactNode;
+}
+
+const ProfileModal: React.FC<ProfileModalProps> = ({ user, children }) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  return (
+    <>
+      {children ? (
+        <span onClick={onOpen}>{children}</span>
+      ) : (
+        <IconButton
+          display={{ base: 'flex' }}
+          icon={<ViewIcon />}
+          aria-label="false"
+        />
+      )}
+
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader fontSize="25px" display="flex" justifyContent="center">
+            {user.name}
+          </ModalHeader>
+          <ModalCloseButton />
+          <ModalBody
+            color="gray"
+            fontSize="15px"
+            display="flex"
+            justifyContent="center"
+          >
+            {user.email}
+          </ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme="blue" mr={3} onClick={onClose}>
+              Close
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </>
+  );
 };
 
 export default ProfileModal;
