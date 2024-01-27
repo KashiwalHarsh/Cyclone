@@ -4,10 +4,12 @@ A Realtime Chat application, built using Socket.io and Mongodb with React Fronte
 
 Using TECH :
 
--Monogdb aggregation pipeline
--Bcrypt for having ( as its slow and is difficult for hacker to crack)
+-TypeScript 
+-Chakra Ui
+-MongoDB aggregation pipeline
+-Bcrypt for having ( as it slow and is difficult for hackers to crack)
 -React with Vite HMR 
 -Express Dynamic routing
 -Nodejs with MVC Desing pattern
--Firebase for intermediate data strorage
+-Firebase for intermediate data storage
 
