@@ -16,6 +16,7 @@ import {
   Text,
   Tooltip,
   useDisclosure,
+  useToast,
 } from '@chakra-ui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
@@ -24,15 +25,17 @@ import { ChatState } from '../../context/ChatProvider';
 import ProfileModal from '../miscellaneous/ProfileModal';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import axios from 'axios';
 
 const SideDrawer = () => {
   const [search, setSearch] = useState('');
-  // const [searchResult, setSearchResult] = useState([]);
-  // const [loading, setLoading] = useState(false);
+  const [searchResult, setSearchResult] = useState([]);
+  const [loading, setLoading] = useState(false);
   // const [loadingChat, setLoadingChat] = useState();
 
   const { user } = ChatState();
   const navigate = useNavigate();
+  const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
   //can cause problem
   if (!user) return;
@@ -40,6 +43,41 @@ const SideDrawer = () => {
   const logoutHandler = () => {
     localStorage.removeItem('userInfo');
     navigate('/');
+  };
+
+  const handleSearch = async () => {
+    if (!search) {
+      toast({
+        title: 'Please Enter something in the search',
+        status: 'warning',
+        duration: 5000,
+        isClosable: true,
+        position: 'bottom-left',
+      });
+      return;
+    }
+    try {
+      setLoading(true);
+      const config = {
+        headers: { Authorization: `Bearer ${user.token}` },
+      };
+
+      const { data } = await axios.get(
+        `http://localhost:3000/api/user?search=${search}`,
+        config
+      );
+      setLoading(false);
+      setSearchResult(data);
+    } catch (err) {
+      toast({
+        title: 'Error Occured',
+        description: 'Failed to Load the search Results',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+        position: 'bottom-left',
+      });
+    }
   };
 
   return (
@@ -108,11 +146,7 @@ const SideDrawer = () => {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
-              <Button
-              // onClick={handleSearch}
-              >
-                Go
-              </Button>
+              <Button onClick={handleSearch}>Go</Button>
             </Box>
           </DrawerBody>
         </DrawerContent>
