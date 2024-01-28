@@ -2,6 +2,11 @@ import {
   Avatar,
   Box,
   Button,
+  Drawer,
+  DrawerBody,
+  DrawerContent,
+  DrawerHeader,
+  DrawerOverlay,
   Menu,
   MenuButton,
   MenuDivider,
@@ -9,6 +14,7 @@ import {
   MenuList,
   Text,
   Tooltip,
+  useDisclosure,
 } from '@chakra-ui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
@@ -20,6 +26,7 @@ import { useNavigate } from 'react-router-dom';
 const SideDrawer = () => {
   const { user } = ChatState();
   const navigate = useNavigate();
+  const { isOpen, onOpen, onClose } = useDisclosure();
   //can cause problem
   if (!user) return;
 
@@ -44,7 +51,7 @@ const SideDrawer = () => {
           hasArrow
           placeContent="bottom-end"
         >
-          <Button variant="ghost">
+          <Button variant="ghost" onClick={onOpen}>
             <FontAwesomeIcon icon={faMagnifyingGlass} />
             <Text display={{ base: 'none', md: 'flex' }} px="4">
               Search User
@@ -82,6 +89,13 @@ const SideDrawer = () => {
           </Menu>
         </div>
       </Box>
+      <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerHeader>Search User</DrawerHeader>
+        </DrawerContent>
+        <DrawerBody></DrawerBody>
+      </Drawer>
     </>
   );
 };
