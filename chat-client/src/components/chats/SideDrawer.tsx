@@ -7,6 +7,7 @@ import {
   DrawerContent,
   DrawerHeader,
   DrawerOverlay,
+  Input,
   Menu,
   MenuButton,
   MenuDivider,
@@ -22,8 +23,14 @@ import { BellIcon, ChevronDownIcon } from '@chakra-ui/icons';
 import { ChatState } from '../../context/ChatProvider';
 import ProfileModal from '../miscellaneous/ProfileModal';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 const SideDrawer = () => {
+  const [search, setSearch] = useState('');
+  // const [searchResult, setSearchResult] = useState([]);
+  // const [loading, setLoading] = useState(false);
+  // const [loadingChat, setLoadingChat] = useState();
+
   const { user } = ChatState();
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -93,8 +100,22 @@ const SideDrawer = () => {
         <DrawerOverlay />
         <DrawerContent>
           <DrawerHeader>Search User</DrawerHeader>
+          <DrawerBody>
+            <Box display="flex" pb={2}>
+              <Input
+                placeholder="Search by name or email"
+                mr={2}
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+              <Button
+              // onClick={handleSearch}
+              >
+                Go
+              </Button>
+            </Box>
+          </DrawerBody>
         </DrawerContent>
-        <DrawerBody></DrawerBody>
       </Drawer>
     </>
   );
