@@ -82,7 +82,7 @@ const SideDrawer = () => {
     }
   };
 
-  const accessChat = (userId) => {};
+  // const accessChat = (userId) => {};
 
   return (
     <>
@@ -157,9 +157,9 @@ const SideDrawer = () => {
             ) : (
               searchResult?.map((user) => (
                 <UserListItem
-                  key={user._id}
+                  // key={user._id}
                   user={user}
-                  handleFunction={() => accessChat(user._id)}
+                  // handleFunction={() => accessChat(user._id)}
                 />
               ))
             )}
