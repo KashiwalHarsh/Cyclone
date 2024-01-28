@@ -26,6 +26,8 @@ import ProfileModal from '../miscellaneous/ProfileModal';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
+import ChatLoading from '../miscellaneous/ChatLoading';
+import UserListItem from '../miscellaneous/UserListItem';
 
 const SideDrawer = () => {
   const [search, setSearch] = useState('');
@@ -79,6 +81,8 @@ const SideDrawer = () => {
       });
     }
   };
+
+  const accessChat = (userId) => {};
 
   return (
     <>
@@ -148,6 +152,17 @@ const SideDrawer = () => {
               />
               <Button onClick={handleSearch}>Go</Button>
             </Box>
+            {loading ? (
+              <ChatLoading />
+            ) : (
+              searchResult?.map((user) => (
+                <UserListItem
+                  key={user._id}
+                  user={user}
+                  handleFunction={() => accessChat(user._id)}
+                />
+              ))
+            )}
           </DrawerBody>
         </DrawerContent>
       </Drawer>
