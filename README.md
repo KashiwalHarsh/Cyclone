@@ -7,6 +7,7 @@ Using TECH :
 -TypeScript\
 -Chakra Ui\
 -MongoDB aggregation pipeline\
+-MongoDB advance Concepts\
 -Bcrypt for having ( as it slow and is difficult for hackers to crack)\
 -React with Vite HMR\
 -Express Dynamic routing\
