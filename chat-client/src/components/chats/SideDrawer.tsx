@@ -13,6 +13,7 @@ import {
   MenuDivider,
   MenuItem,
   MenuList,
+  Spinner,
   Text,
   useDisclosure,
   useToast,
@@ -105,6 +106,9 @@ const SideDrawer = () => {
         { userId },
         config
       );
+
+      if (!chats.find((c) => c._id === data._id)) setChats([data, ...chats]);
+
       setSelectedChat(data);
       setLoadingChat(false);
       onClose();
@@ -193,6 +197,7 @@ const SideDrawer = () => {
                 />
               ))
             )}
+            {loadingChat && <Spinner ml="auto" display="flex" />}
           </DrawerBody>
         </DrawerContent>
       </Drawer>
