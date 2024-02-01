@@ -30,6 +30,7 @@ interface ChatProviderProps {
 }
 
 const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
+  //fix these useStates by typecheking
   const [user, setUser] = useState<userI | undefined>();
   const [selectedChat, setSelectedChat] = useState<userI | undefined>();
   const [chats, setChats] = useState<userI | undefined>();
