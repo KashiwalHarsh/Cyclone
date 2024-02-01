@@ -14,7 +14,6 @@ import {
   MenuItem,
   MenuList,
   Text,
-  Tooltip,
   useDisclosure,
   useToast,
 } from '@chakra-ui/react';
@@ -95,18 +94,12 @@ const SideDrawer = () => {
         p="5px 10px 5px 10px"
         borderWidth="5px"
       >
-        <Tooltip
-          label="   Search user for Chat"
-          hasArrow
-          placeContent="bottom-end"
-        >
-          <Button variant="ghost" onClick={onOpen}>
-            <FontAwesomeIcon icon={faMagnifyingGlass} />
-            <Text display={{ base: 'none', md: 'flex' }} px="4">
-              Search User
-            </Text>
-          </Button>
-        </Tooltip>
+        <Button variant="ghost" onClick={onOpen}>
+          <FontAwesomeIcon icon={faMagnifyingGlass} />
+          <Text display={{ base: 'none', md: 'flex' }} px="4">
+            Search User
+          </Text>
+        </Button>
 
         <Text fontSize="2xl"> Flash Chat</Text>
 
