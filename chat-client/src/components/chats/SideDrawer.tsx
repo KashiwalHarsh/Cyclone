@@ -28,13 +28,21 @@ import axios from 'axios';
 import ChatLoading from '../miscellaneous/ChatLoading';
 import UserListItem from '../miscellaneous/UserListItem';
 
+interface userI {
+  _id: string;
+  name: string;
+  email: string;
+  pic: string;
+  token: string;
+}
+
 const SideDrawer = () => {
   const [search, setSearch] = useState('');
-  const [searchResult, setSearchResult] = useState([]);
+  const [searchResult, setSearchResult] = useState<Array<userI>>([]);
   const [loading, setLoading] = useState(false);
-  // const [loadingChat, setLoadingChat] = useState();
+  const [loadingChat, setLoadingChat] = useState(false);
 
-  const { user } = ChatState();
+  const { user, setSelectedChat, chats, setChats } = ChatState();
   const navigate = useNavigate();
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -81,7 +89,36 @@ const SideDrawer = () => {
     }
   };
 
-  // const accessChat = (userId) => {};
+  const accessChat = async (userId: string) => {
+    try {
+      setLoadingChat(true);
+
+      const config = {
+        headers: {
+          'Content-type': 'application/json',
+          Authorization: `Bearer ${user.token}`,
+        },
+      };
+
+      const { data } = await axios.post(
+        'http://localhost:3000/api/chats',
+        { userId },
+        config
+      );
+      setSelectedChat(data);
+      setLoadingChat(false);
+      onClose();
+    } catch (err) {
+      toast({
+        title: 'Error Occured',
+        description: 'Failed to Load the Chat Results',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+        position: 'bottom-left',
+      });
+    }
+  };
 
   return (
     <>
@@ -150,9 +187,9 @@ const SideDrawer = () => {
             ) : (
               searchResult?.map((user) => (
                 <UserListItem
-                  // key={user._id}
+                  key={user._id}
                   user={user}
-                  // handleFunction={() => accessChat(user._id)}
+                  handleFunction={() => accessChat(user._id)}
                 />
               ))
             )}

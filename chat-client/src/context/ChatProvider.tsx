@@ -10,6 +10,10 @@ import { useNavigate } from 'react-router-dom';
 type ChatContextType = {
   user: userI | undefined;
   setUser: React.Dispatch<React.SetStateAction<userI | undefined>>;
+  selectedChat: userI | undefined;
+  setSelectedChat: React.Dispatch<React.SetStateAction<userI | undefined>>;
+  chats: userI | undefined;
+  setChats: React.Dispatch<React.SetStateAction<userI | undefined>>;
 };
 
 const ChatContext = createContext<ChatContextType | null>(null);
@@ -27,6 +31,8 @@ interface ChatProviderProps {
 
 const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
   const [user, setUser] = useState<userI | undefined>();
+  const [selectedChat, setSelectedChat] = useState<userI | undefined>();
+  const [chats, setChats] = useState<userI | undefined>();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -41,7 +47,9 @@ const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
   }, [navigate]);
 
   return (
-    <ChatContext.Provider value={{ user, setUser }}>
+    <ChatContext.Provider
+      value={{ user, setUser, selectedChat, setSelectedChat, chats, setChats }}
+    >
       {children}
     </ChatContext.Provider>
   );
