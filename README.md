@@ -1,7 +1,5 @@
 # Slack Clone
 
-Live Link ->[]
-
 A Realtime Chat application, built using Socket.io and Mongodb with React Frontend
 
 ## Features
