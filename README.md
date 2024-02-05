@@ -5,6 +5,7 @@ A Realtime Chat application, built using Socket.io and Mongodb with React Fronte
 
 - **Group Chat:** Easily add members to the group to have a fun group chat.
 - **Search User:** Connect with more people by searching them with Username and Email
+- **Dark Mode:** Utilize the provided dark mode as per preference
 
 ## Tech Stack
 
