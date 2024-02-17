@@ -1,6 +1,6 @@
 # Slack Clone
 
-A Realtime Chat application, built using Socket.io and Mongodb with React
+A Realtime Chat application, built using Socket.io and Mongodb with React and Node
 ## Features
 
 - **Group Chat:** Easily add members to the group to have a fun group chat.
