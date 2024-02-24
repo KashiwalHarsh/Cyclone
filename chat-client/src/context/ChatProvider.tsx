@@ -12,8 +12,8 @@ type ChatContextType = {
   setUser: React.Dispatch<React.SetStateAction<userI | undefined>>;
   selectedChat: userI | undefined;
   setSelectedChat: React.Dispatch<React.SetStateAction<userI | undefined>>;
-  chats: userI | undefined;
-  setChats: React.Dispatch<React.SetStateAction<userI | undefined>>;
+  chats: userI[];
+  setChats: React.Dispatch<React.SetStateAction<userI[]>>;
 };
 
 const ChatContext = createContext<ChatContextType | null>(null);
@@ -33,7 +33,7 @@ const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
   //fix these useStates by typecheking
   const [user, setUser] = useState<userI | undefined>();
   const [selectedChat, setSelectedChat] = useState<userI | undefined>();
-  const [chats, setChats] = useState<userI | undefined>();
+  const [chats, setChats] = useState<userI[]>([]);
   const navigate = useNavigate();
 
   useEffect(() => {
