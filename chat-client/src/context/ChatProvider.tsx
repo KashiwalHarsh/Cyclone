@@ -10,10 +10,10 @@ import { useNavigate } from 'react-router-dom';
 type ChatContextType = {
   user: userI | undefined;
   setUser: React.Dispatch<React.SetStateAction<userI | undefined>>;
-  selectedChat: userI | undefined;
-  setSelectedChat: React.Dispatch<React.SetStateAction<userI | undefined>>;
-  chats: userI[];
-  setChats: React.Dispatch<React.SetStateAction<userI[]>>;
+  selectedChat: chatI | undefined;
+  setSelectedChat: React.Dispatch<React.SetStateAction<chatI | undefined>>;
+  chats: chatI[];
+  setChats: React.Dispatch<React.SetStateAction<chatI[]>>;
 };
 
 const ChatContext = createContext<ChatContextType | null>(null);
@@ -25,6 +25,12 @@ interface userI {
   pic: string;
   token: string;
 }
+
+interface chatI {
+  _id: string;
+  chatName: string;
+  isGroupChat: boolean;
+}
 interface ChatProviderProps {
   children: ReactNode;
 }
@@ -32,8 +38,8 @@ interface ChatProviderProps {
 const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
   //fix these useStates by typecheking
   const [user, setUser] = useState<userI | undefined>();
-  const [selectedChat, setSelectedChat] = useState<userI | undefined>();
-  const [chats, setChats] = useState<userI[]>([]);
+  const [selectedChat, setSelectedChat] = useState<chatI | undefined>();
+  const [chats, setChats] = useState<chatI[]>([]);
   const navigate = useNavigate();
 
   useEffect(() => {

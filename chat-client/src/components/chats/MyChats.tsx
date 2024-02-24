@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ChatState } from '../../context/ChatProvider';
-import { Box, Button, Stack, useToast } from '@chakra-ui/react';
+import { Box, Button, Stack, Text, useToast } from '@chakra-ui/react';
 import axios from 'axios';
 import { AddIcon } from '@chakra-ui/icons';
 import ChatLoading from '../miscellaneous/ChatLoading';
@@ -93,7 +93,13 @@ const MyChats = () => {
                 bg={selectedChat === chat ? '#38b2ac' : '#e8e8e8'}
                 color={selectedChat === chat ? 'white' : 'black'}
                 key={chat._id}
-              ></Box>
+              >
+                <Text>
+                  {!chat.isGroupChat
+                    ? getSender(loggedUser, chat.users)
+                    : chat.chatName}
+                </Text>
+              </Box>
             ))}
           </Stack>
         ) : (
