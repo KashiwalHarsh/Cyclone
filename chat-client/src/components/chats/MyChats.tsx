@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { ChatState } from '../../context/ChatProvider';
-import { Box, Button, useToast } from '@chakra-ui/react';
+import { Box, Button, Stack, useToast } from '@chakra-ui/react';
 import axios from 'axios';
 import { AddIcon } from '@chakra-ui/icons';
+import ChatLoading from '../miscellaneous/ChatLoading';
 
 const MyChats = () => {
   const [loggedUser, setLoggedUser] = useState();
@@ -69,6 +70,35 @@ const MyChats = () => {
         >
           New Group Chat
         </Button>
+      </Box>
+      <Box
+        display="flex"
+        flexDir="column"
+        p={3}
+        bg="#f8f8f8"
+        w="100%"
+        h="100%"
+        borderRadius="lg"
+        overflowY="hidden"
+      >
+        {chats ? (
+          <Stack overflowY="scroll">
+            {chats.map((chat) => (
+              <Box
+                onClick={() => setSelectedChat(chat)}
+                cursor="pointer"
+                px={3}
+                py={2}
+                borderRadius="lg"
+                bg={selectedChat === chat ? '#38b2ac' : '#e8e8e8'}
+                color={selectedChat === chat ? 'white' : 'black'}
+                key={chat._id}
+              ></Box>
+            ))}
+          </Stack>
+        ) : (
+          <ChatLoading />
+        )}
       </Box>
     </Box>
   );
