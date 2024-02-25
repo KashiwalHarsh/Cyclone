@@ -12,7 +12,7 @@ A Realtime Chat application, built using Socket.io and Mongodb with React and No
 - **Frontend:** React.js with Vite HMR, Chakra UI, TypeScript, Zustand
 - **Backend:** Node.js MVC, Express.js
 - **Database:** MongoDB, Aggregation Pipeline, Firebase
-- **Auth and Security:** Bcrypt, (as it is slow and difficult for hackers to crack), JWT
+- **Auth and Security:** Bcrypt(as it is slow and difficult for hackers to crack), JWT
 
 ## Usage
 
