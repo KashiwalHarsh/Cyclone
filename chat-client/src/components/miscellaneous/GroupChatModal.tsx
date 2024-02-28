@@ -71,7 +71,9 @@ const GroupChatModal = ({ children }) => {
     setSelectedUsers([...selectedUsers, userToAdd]);
   };
   const handleDelete = (userToDelete) => {
-    setSelectedUsers();
+    setSelectedUsers(
+      selectedUsers.filter((sel) => sel._id != userToDelete._id)
+    );
   };
 
   return (
