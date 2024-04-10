@@ -22,7 +22,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/user", userRoutes)
 app.use("/api/chats", chatRoutes)
-app.use("/api/messages", messageRoutes)
+app.use("/api/message", messageRoutes)
 app.use(notFound)
 app.use(errorHandler)
 
