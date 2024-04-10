@@ -5,6 +5,7 @@ const cors = require("cors")
 const connectDB = require('./config/db')
 const userRoutes = require('./routes/userRoutes')
 const chatRoutes = require('./routes/chatRoutes')
+const messageRoutes = require('./routes/messageRoutes')
 const { notFound, errorHandler } = require('./middlewares/errorMiddleware')
 
 const app = express()
@@ -21,6 +22,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/user", userRoutes)
 app.use("/api/chats", chatRoutes)
+app.use("/api/messages", messageRoutes)
 app.use(notFound)
 app.use(errorHandler)
 
