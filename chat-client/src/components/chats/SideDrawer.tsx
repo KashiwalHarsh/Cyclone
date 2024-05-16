@@ -142,7 +142,7 @@ const SideDrawer = () => {
           </Text>
         </Button>
 
-        <Text fontSize="2xl"> Flash Chat</Text>
+        <Text fontSize="2xl"> Cyclone</Text>
 
         <div>
           <Menu>
